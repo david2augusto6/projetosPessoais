@@ -1,0 +1,10 @@
+package Model;
+
+import javax.swing.JOptionPane;
+
+public class GerenciadorDeContas{
+    public static void main(String args[]){
+        String nome = JOptionPane.showInputDialog();
+    
+    }
+}

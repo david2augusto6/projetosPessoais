@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Em que país você mora? <input type="text" name="txtpais" id="txtpais">
+    <input type="button" value="Confirmar" onclick="mostrarMensagem()">
+    <div id="msg">Vivendo em </div>
+    <script>
+        function mostrarMensagem(){
+            var txtpais = document.getElementById("txtpais")
+            var msg = document.querySelector("div#msg")
+            msg.innerHTML = "Vivendo em "+txtpais.innerText
+            if (txtpais == "Brasil"){
+                msg.innerHTML += "<p> Você é brasileiro."
+            }else{
+                msg.innerHTML += "<p> Você é estrangeiro. "
+            }
+        }
+    </script>
+</body>
+</html>

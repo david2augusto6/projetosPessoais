@@ -1,0 +1,62 @@
+package Model;
+
+import java.util.ArrayList;
+public class Usuario {
+    private String nome;
+    private String cpf;
+    private float salario;
+    private ArrayList<Contas> contas;
+    
+	public Usuario(String nomeU) {
+		this.nome = nomeU;
+		this.contas = new ArrayList<Contas>();
+	}
+
+	
+
+	public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public float getSalario() {
+        return salario;
+    }
+    public void setSalario(float salario) {
+        this.salario = salario;
+    }
+    
+    public void adicionarConta(Contas conta) {
+    	this.contas.add(conta);
+    }
+    
+    
+    
+    public float somarContas(){
+        float a=0;
+        for(int i=0; i < this.contas.size(); i++){
+            a += this.contas.get(i).getValor();
+        }
+        return a;
+    }
+
+    public String mostrarContas(){
+        String cabecalho = "<<<<Contas de "+this.getNome()+">>>>\n";
+        String relatorio = "";
+        if (this.contas.size() != 0){
+        	
+        	for(int a=0; a < this.contas.size(); a++){
+        		relatorio += (""+this.contas.get(a).getDescricao()+"-"+this.contas.get(a).getCodigo()+"\n"+
+                               		"Valor: R$"+(this.contas.get(a).getValor()));
+            }
+        }
+        return cabecalho+relatorio;
+    }
+}

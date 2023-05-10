@@ -1,0 +1,65 @@
+package Model;
+import javax.swing.JOptionPane;import java.util.ArrayList;
+
+public class Main{
+    public static void main(String args[]){
+      int a;
+      ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+      
+      String listaUsuarios = "";
+      if (usuarios.size() != 0) {
+      for(int x=0; x < usuarios.size(); x++ ) {
+    	  
+    	  listaUsuarios += "<<<<Usuarios Cadastrados>>>\n"+
+    			  		   usuarios.get(x).getNome()+"\n"+
+    			  		   usuarios.get(x).getCpf()+"\n"+
+    			  		   "Salario Líquido: R$"+usuarios.get(x).getSalario()+"\n\n";
+      }}
+      
+      do{a = Integer.parseInt(JOptionPane.showInputDialog(null,listaUsuarios+
+    		  													"Escolha uma opcão:\n"+
+    				  											"[1]\t Cadastrar usuário\t"+
+    				  											"[2]\t Mostrar contas de um usuário\\t"+
+    		  													"[0]\t Encerrar Programa"));
+
+         if(a == 1){// Cadastro de um novo usuario
+           String nomeUsuario = JOptionPane.showInputDialog("Nome do Usuário");
+           Usuario u = new Usuario(nomeUsuario);
+           u.setCpf(JOptionPane.showInputDialog("CPF"));
+           u.setSalario(Float.parseFloat(JOptionPane.showInputDialog("Salario Líquido")));
+           usuarios.add(u);
+         }
+         
+         if(a == 2){//Contas do usuario
+           String cpfUsuario = JOptionPane.showInputDialog("Insira o CPF do Usuario");int i = -1;
+           do {
+        	   i++;
+           }while (!usuarios.get(i).getCpf().equals(cpfUsuario));
+           ;
+           
+           int opcao = -1;
+           do {
+        	   opcao = Integer.parseInt(JOptionPane.showInputDialog(null, usuarios.get(i).mostrarContas()+"\n"+
+        			   					"[0] Voltar ao menu inicial "+
+        			   					"[1] Adicionar conta "+
+        			   					"[2] Pagar conta"));
+        	   if (opcao == 1) {// Adicionar Conta a pagar
+        		   Contas c = new Contas();
+        		   c.setDescricao(JOptionPane.showInputDialog(null, "Insira a descrição da conta"));
+        		   c.setCodigo(JOptionPane.showInputDialog(null, "Insira o código da conta (13 dígitos)"));
+        		   c.setValor(Float.parseFloat(JOptionPane.showInputDialog(null, "Insira o valor da conta")));
+        		   c.setMes(Integer.parseInt(JOptionPane.showInputDialog(null, "Mês de vencimento")));
+        		   c.setAno(Integer.parseInt(JOptionPane.showInputDialog(null, "Ano de vencimento")));
+        		   usuarios.get(i).adicionarConta(c);   
+        	   }
+        	   
+        	   if (opcao == 2) {// Pagar conta
+        		  String codigo = JOptionPane.showInputDialog(null, "Insira o código da conta a pagar");
+        		  usuarios.get(i).pagarConta(codigo);
+        	   }	        	   
+           }while(opcao != 0);
+        }
+      }while(a != 0);
+      System.exit(0);
+    }
+}

@@ -1,0 +1,30 @@
+package Model;
+import javax.swing.JOptionPane;import java.util.ArrayList;
+
+public class Main{
+    public static void main(String args[]){
+      int a;
+      ArrayList<Usuario> usuario = new ArrayList<Usuario>();
+      
+      do{a = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opcão:\n"+"[1]\t Cadastrar usuário\n"+"[2]\t Mostrar dados do usuário\n"+"[0] Encerrar Programa"));
+
+         if(a == 1){// Cadastro de um novo usuario
+           Usuario u = new Usuario();
+           u.setNome(JOptionPane.showInputDialog("Nome do Usuário"));
+           u.setCpf(Integer.parseInt(JOptionPane.showInputDialog("CPF")));
+           u.setSalario(Float.parseFloat(JOptionPane.showInputDialog("Salario Líquido")));
+           usuario.add(u);
+         }
+         
+         if(a == 2){//Dados do usuario
+           String cpfUsuario = JOptionPane.showInputDialog("Insira o CPf do Usuario");
+           for(int i=0; i < usuario.size(); i++){
+             if (usuario.get(i).getCpf() == Integer.parseInt(cpfUsuario)){
+               usuario.get(i).mostrarContas();
+               }
+           }break;
+        }
+      }while(a != 0);
+      System.exit(0);
+    }
+}
