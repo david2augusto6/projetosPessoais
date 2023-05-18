@@ -12,7 +12,6 @@ int main(){
     Inserir_elementos(v);
     Print_elementos(*v);
 
-
     printf("\nValor que deseja buscar: ");scanf("%d", &buscar);
 
     printf("Resultado da busca = %d", Busca_Sequencia(v, buscar));
